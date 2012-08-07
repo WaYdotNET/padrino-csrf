@@ -28,8 +28,8 @@ module Padrino
       # @since 0.1.0
       # @api public
       def csrf_meta_tags
-        [ meta_tag(csrf_token, name: 'csrf-token'),
-          meta_tag(csrf_param, name: 'csrf-param')
+        [ meta_tag(csrf_token, :name => 'csrf-token'),
+          meta_tag(csrf_param, :name => 'csrf-param')
         ].join("\n")
       end
 

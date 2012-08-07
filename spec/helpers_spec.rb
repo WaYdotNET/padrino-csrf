@@ -1,4 +1,5 @@
-require_relative 'spec'
+require File.join(File.dirname(__FILE__), 'spec')
+
 
 describe Padrino::CSRF::Helpers do
   include Padrino::Helpers::AssetTagHelpers
@@ -13,7 +14,7 @@ describe Padrino::CSRF::Helpers do
   end
 
   let :session do
-    { _csrf_token: SecureRandom.hex(32) }
+    { :_csrf_token => SecureRandom.hex(32) }
   end
 
   let :request do
@@ -45,8 +46,8 @@ describe Padrino::CSRF::Helpers do
   context '#csrf_meta_tags' do
     it 'should return meta tags with the current token and parameter' do
       meta_tags = csrf_meta_tags
-      meta_tags.should have_tag(:meta, count: 1, with: { name: 'csrf-param', content: csrf_param })
-      meta_tags.should have_tag(:meta, count: 1, with: { name: 'csrf-token', content: csrf_token })
+      meta_tags.should have_tag(:meta, :count => 1, :with => { :name => 'csrf-param', :content => csrf_param })
+      meta_tags.should have_tag(:meta, :count => 1, :with => { :name => 'csrf-token', :content => csrf_token })
     end
   end
 
@@ -65,10 +66,10 @@ describe Padrino::CSRF::Helpers do
 
   context '#form_tag' do
     it 'should prepend the CSRF authenticity token to the form' do
-      form = form_tag('/register') { text_field_tag :user_name, value: 'test' }
-      form.should have_tag(:form, count: 1, with: { method: 'post',  action: '/register' }) do
-        with_tag(:input, count: 1, with: { type: 'hidden', name: csrf_param, value: csrf_token })
-        with_tag(:input, count: 1, with: { type: 'text', name: 'user_name', value: 'test' })
+      form = form_tag('/register') { text_field_tag :user_name, :value => 'test' }
+      form.should have_tag(:form, :count => 1, :with => { :method => 'post',  :action => '/register' }) do
+        with_tag(:input, :count => 1, :with => { :type => 'hidden', :name => csrf_param, :value => csrf_token })
+        with_tag(:input, :count => 1, :with => { :type => 'text', :name => 'user_name', :value => 'test' })
       end
     end
   end
@@ -76,7 +77,7 @@ describe Padrino::CSRF::Helpers do
   context '#token_field_tag' do
     it 'should return a hidden input with the current CSRF token' do
       input = token_field_tag
-      input.should have_tag(:input, count: 1, with: { type: 'hidden', name: csrf_param, value: csrf_token })
+      input.should have_tag(:input, :count => 1, :with => { :type => 'hidden', :name => csrf_param, :value => csrf_token })
     end
   end
 end

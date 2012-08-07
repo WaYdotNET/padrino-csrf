@@ -11,7 +11,7 @@ module Padrino
       # @since 0.1.0
       # @api semipublic
       def token_field_tag
-        input_tag(:hidden, name: csrf_param, value: csrf_token)
+        input_tag(:hidden, :name => csrf_param, :value => csrf_token)
       end
 
       # @private
