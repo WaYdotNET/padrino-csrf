@@ -20,7 +20,7 @@ end
 
 ### Configuration
 
-`prevent_request_forgery`  
+`prevent_request_forgery`
 When enabled, will automatically verify the CSRF authentication token on all `post`, `put`, and `delete` requests.
 
 You can of course disable this on a request by request basis:
@@ -54,7 +54,7 @@ end
 ### Dependencies
 
 * [Padrino-Core](https://github.com/padrino/padrino-framework) and [Padrino-Helpers](https://github.com/padrino/padrino-framework)
-* [Ruby](http://www.ruby-lang.org/en) >= 1.9.2
+* [Ruby](http://www.ruby-lang.org/en) >= 1.8.7
 
 ### TODO
 
